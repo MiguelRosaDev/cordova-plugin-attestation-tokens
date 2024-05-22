@@ -31,5 +31,11 @@
     "eslint": "^8.44.0",
     "eslint-config-prettier": "^8.8.0",
     "prettier": "^2.8.8"
+  },
+  "scripts": {
+    "prepare-debug-android": "npm run make-www-debug && cross-env USE_DEBUG_APP_CHECK=true cordova prepare android",
+    "prepare-debug-ios": "npm run make-www-debug && cross-env USE_DEBUG_APP_CHECK=true cordova prepare ios",
+    "prepare-release-android": "npm run make-www-release && cordova prepare android",
+    "prepare-release-ios": "npm run make-www-release && cordova prepare ios",
   }
 }
