@@ -13,6 +13,8 @@ import com.google.firebase.appcheck.AppCheckToken;
 import com.google.firebase.appcheck.playintegrity.PlayIntegrityAppCheckProviderFactory;
 import com.google.firebase.appcheck.debug.DebugAppCheckProviderFactory;
 
+import android.util.Log;
+
 public class AttestationTokens extends CordovaPlugin {
     private static final String TAG = "AttestationTokensPlugin";
 
@@ -22,8 +24,11 @@ public class AttestationTokens extends CordovaPlugin {
         // An after_prepare hook script, debugSwitch.js, selects between
         // DebugAppCheckProviderFactory and PlayIntegrityAppCheckProviderFactory,
         // by modifying the copy of this file created by Cordova in the platform dir
+        Log.e(TAG, "initialize");
         FirebaseAppCheck firebaseAppCheck = FirebaseAppCheck.getInstance();
+        Log.e(TAG, "initialize 1");
         firebaseAppCheck.installAppCheckProviderFactory(PlayIntegrityAppCheckProviderFactory.getInstance());
+        Log.e(TAG, "initialize 2");
     }
 
     public boolean execute(final String action, JSONArray args, CallbackContext callbackContext) {
@@ -40,16 +45,19 @@ public class AttestationTokens extends CordovaPlugin {
     }
 
     private void getToken(CallbackContext callbackContext) {
+        Log.e(TAG, "getToken");
         FirebaseAppCheck.getInstance()
             .getAppCheckToken(false)
             .addOnCompleteListener(new OnCompleteListener<AppCheckToken>() {
                 @Override
                 public void onComplete(Task<AppCheckToken> task) {
+                    Log.e(TAG, "getToken onComplete");
                     if (task.isSuccessful() && task.getResult().getToken() != null) {
                         cordova.getActivity().runOnUiThread(() ->
                             callbackContext.success(task.getResult().getToken()));
                     } else {
                         Exception exception = task.getException();
+                        Log.e(TAG, "getToken exception");
                         if (exception != null && exception.getLocalizedMessage() != null) {
                             cordova.getActivity().runOnUiThread(() ->
                                 callbackContext.error(exception.getLocalizedMessage()));
