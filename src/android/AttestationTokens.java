@@ -8,6 +8,7 @@ import org.json.JSONArray;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.appcheck.FirebaseAppCheck;
 import com.google.firebase.appcheck.AppCheckToken;
 import com.google.firebase.appcheck.playintegrity.PlayIntegrityAppCheckProviderFactory;
@@ -24,6 +25,7 @@ public class AttestationTokens extends CordovaPlugin {
         // An after_prepare hook script, debugSwitch.js, selects between
         // DebugAppCheckProviderFactory and PlayIntegrityAppCheckProviderFactory,
         // by modifying the copy of this file created by Cordova in the platform dir
+        FirebaseApp.initializeApp(this);
         Log.e(TAG, "initialize");
         FirebaseAppCheck firebaseAppCheck = FirebaseAppCheck.getInstance();
         Log.e(TAG, "initialize 1");
