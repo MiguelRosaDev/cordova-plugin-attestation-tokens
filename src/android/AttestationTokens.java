@@ -18,7 +18,6 @@ public class AttestationTokens extends CordovaPlugin {
 
     @Override
     public void onCreate() {
-        super.onCreate();
         FirebaseAppCheck firebaseAppCheck = FirebaseAppCheck.getInstance();
         firebaseAppCheck.installAppCheckProviderFactory(
             PlayIntegrityAppCheckProviderFactory.getInstance());
