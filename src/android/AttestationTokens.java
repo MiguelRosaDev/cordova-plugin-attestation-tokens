@@ -16,6 +16,14 @@ import com.google.firebase.appcheck.debug.DebugAppCheckProviderFactory;
 public class AttestationTokens extends CordovaPlugin {
     private static final String TAG = "AttestationTokensPlugin";
 
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        FirebaseAppCheck firebaseAppCheck = FirebaseAppCheck.getInstance();
+        firebaseAppCheck.installAppCheckProviderFactory(
+            PlayIntegrityAppCheckProviderFactory.getInstance());
+    }
+    /*
     public void initialize(CordovaInterface cordova, CordovaWebView webView) {
         super.initialize(cordova, webView);
 
@@ -25,6 +33,7 @@ public class AttestationTokens extends CordovaPlugin {
         FirebaseAppCheck firebaseAppCheck = FirebaseAppCheck.getInstance();
         firebaseAppCheck.installAppCheckProviderFactory(PlayIntegrityAppCheckProviderFactory.getInstance());
     }
+    */
 
     public boolean execute(final String action, JSONArray args, CallbackContext callbackContext) {
         if (action.equals("getToken")) {
