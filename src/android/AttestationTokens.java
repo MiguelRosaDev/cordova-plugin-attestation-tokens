@@ -26,11 +26,8 @@ public class AttestationTokens extends CordovaPlugin {
         // DebugAppCheckProviderFactory and PlayIntegrityAppCheckProviderFactory,
         // by modifying the copy of this file created by Cordova in the platform dir
         FirebaseApp.initializeApp(this);
-        Log.e(TAG, "initialize");
         FirebaseAppCheck firebaseAppCheck = FirebaseAppCheck.getInstance();
-        Log.e(TAG, "initialize 1");
         firebaseAppCheck.installAppCheckProviderFactory(PlayIntegrityAppCheckProviderFactory.getInstance());
-        Log.e(TAG, "initialize 2");
     }
 
     public boolean execute(final String action, JSONArray args, CallbackContext callbackContext) {
@@ -47,19 +44,16 @@ public class AttestationTokens extends CordovaPlugin {
     }
 
     private void getToken(CallbackContext callbackContext) {
-        Log.e(TAG, "getToken");
         FirebaseAppCheck.getInstance()
             .getAppCheckToken(false)
             .addOnCompleteListener(new OnCompleteListener<AppCheckToken>() {
                 @Override
                 public void onComplete(Task<AppCheckToken> task) {
-                    Log.e(TAG, "getToken onComplete");
                     if (task.isSuccessful() && task.getResult().getToken() != null) {
                         cordova.getActivity().runOnUiThread(() ->
                             callbackContext.success(task.getResult().getToken()));
                     } else {
                         Exception exception = task.getException();
-                        Log.e(TAG, "getToken exception");
                         if (exception != null && exception.getLocalizedMessage() != null) {
                             cordova.getActivity().runOnUiThread(() ->
                                 callbackContext.error(exception.getLocalizedMessage()));
