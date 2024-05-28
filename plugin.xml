@@ -47,7 +47,7 @@
     </config-file>
 
     <framework src="platform('com.google.firebase:firebase-bom:$ANDROID_FIREBASE_BOM_VERSION')" />
-    <framework src="com.google.firebase:firebase-appcheck-playintegrity" />
+    <!--<framework src="com.google.firebase:firebase-appcheck-playintegrity" />-->
     <framework src="com.google.firebase:firebase-appcheck-debug" />
     <source-file src="src/android/AttestationTokens.java" target-dir="src/com/tokenized/cordova/attestation_tokens"/>
   </platform>
