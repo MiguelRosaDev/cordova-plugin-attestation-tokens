@@ -52,5 +52,5 @@
     <source-file src="src/android/AttestationTokens.java" target-dir="src/com/tokenized/cordova/attestation_tokens"/>
   </platform>
 
-   <hook src="scripts/debugSwitch.js" type="after_prepare" /> 
+   <!-- <hook src="scripts/debugSwitch.js" type="after_prepare" /> -->
 </plugin>
