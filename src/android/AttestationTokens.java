@@ -25,7 +25,6 @@ public class AttestationTokens extends CordovaPlugin {
         // An after_prepare hook script, debugSwitch.js, selects between
         // DebugAppCheckProviderFactory and PlayIntegrityAppCheckProviderFactory,
         // by modifying the copy of this file created by Cordova in the platform dir
-        FirebaseApp.initializeApp(this);
         FirebaseAppCheck firebaseAppCheck = FirebaseAppCheck.getInstance();
         firebaseAppCheck.installAppCheckProviderFactory(PlayIntegrityAppCheckProviderFactory.getInstance());
     }
