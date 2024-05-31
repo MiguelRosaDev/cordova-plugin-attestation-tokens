@@ -26,8 +26,10 @@ public class AttestationTokens extends CordovaPlugin {
         // DebugAppCheckProviderFactory and PlayIntegrityAppCheckProviderFactory,
         // by modifying the copy of this file created by Cordova in the platform dir
         FirebaseAppCheck firebaseAppCheck = FirebaseAppCheck.getInstance();
-        //firebaseAppCheck.installAppCheckProviderFactory(PlayIntegrityAppCheckProviderFactory.getInstance());
-        firebaseAppCheck.installAppCheckProviderFactory(DebugAppCheckProviderFactory.getInstance());
+        firebaseAppCheck.installAppCheckProviderFactory(PlayIntegrityAppCheckProviderFactory.getInstance());
+        
+        //Debug Only
+        //firebaseAppCheck.installAppCheckProviderFactory(DebugAppCheckProviderFactory.getInstance());
     }
 
     public boolean execute(final String action, JSONArray args, CallbackContext callbackContext) {
