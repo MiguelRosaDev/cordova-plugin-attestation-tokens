@@ -19,7 +19,8 @@ class AttestationTokensAppCheckProviderFactory: NSObject, AppCheckProviderFactor
         // An after_prepare hook script, debugSwitch.js, selects between
         // AppCheckDebugProviderFactory and AttestationTokensAppCheckProviderFactory,
         // by modifying the copy of this file created by Cordova in the platform dir
-        let providerFactory = AttestationTokensAppCheckProviderFactory()
+        //let providerFactory = AttestationTokensAppCheckProviderFactory()
+        let providerFactory = AppCheckDebugProviderFactory()
         AppCheck.setAppCheckProviderFactory(providerFactory)
 
         FirebaseApp.configure()
